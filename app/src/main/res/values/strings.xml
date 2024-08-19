@@ -1,3 +1,88 @@
 <resources>
     <string name="app_name">TrackMyTerm</string>
+
+    <!-- Onboarding -->
+    <string name="txt_onboarding_title">WELCOME</string>
+    <string name="txt_onboarding_subtitle">Manage all your terms and courses. Be aware on securing grades for achieving goals</string>
+    <string name="btn_onboarding_start">Start</string>
+
+    <!-- Login -->
+    <string name="txt_login_screen_title">Welcome Back</string>
+    <string name="txt_login_screen_subtitle">Login to application and start tracking your academic performance and get recommendations</string>
+    <string name="txt_edittext_email_title">Email</string>
+    <string name="txt_edittext_email_placeholder">Enter your email address</string>
+    <string name="txt_edittext_password_title">Password</string>
+    <string name="txt_edittext_password_placeholder">Enter your password</string>
+    <string name="txt_remember_me">Remember me</string>
+    <string name="txt_forgot_password">Forgot Password?</string>
+    <string name="btn_login">Login</string>
+    <string name="txt_do_not_have_an_account">You don\'t have an account yet?</string>
+    <string name="btn_navigate_to_sign_up">Sign up</string>
+
+    <!-- Register -->
+    <string name="txt_register_screen_title">Create an Account</string>
+    <string name="txt_register_screen_subtitle">Sign up into the application to start tracking your academic performance and get recommendations</string>
+    <string name="txt_edittext_full_name_title">Full name</string>
+    <string name="txt_edittext_full_name_placeholder">Enter your full name</string>
+    <string name="btn_sign_up">Sign up</string>
+    <string name="txt_already_have_an_account">Already have an account?</string>
+    <string name="btn_navigate_to_log_in">Log in</string>
+
+    <!-- Forgot password -->
+    <string name="txt_forgot_password_screen_title">Forgot Password?</string>
+    <string name="txt_forgot_password_screen_subtitle">To reset your password, you need your email that can be authenticated</string>
+    <string name="btn_send_otp">Send OTP</string>
+    <string name="btn_back_to_login">Back to Login</string>
+
+    <!-- OTP -->
+    <string name="txt_otp_screen_title">Check Your Email</string>
+    <string name="txt_otp_screen_subtitle">We have sent the OTP to the email address %1$s</string>
+    <string name="btn_reset_password">Reset Password</string>
+
+    <!-- Reset Password -->
+    <string name="txt_reset_password_screen_title">Reset Password</string>
+    <string name="txt_edittext_confirm_password_title">Confirm password</string>
+
+    <!-- Home -->
+    <string name="txt_welcome_greeting">Welcome %1$s</string>
+    <string name="txt_courses_enrolled">%1$d courses enrolled</string>
+    <string name="txt_no_term_added">No Term Added</string>
+    <string name="txt_no_term_added_subtitle">Please add the term from term and course management screen</string>
+    <string name="txt_no_courses_added_title">No Courses Added</string>
+    <string name="txt_no_courses_added_subtitle">Please add the course(s) for term to view content</string>
+    <string name="txt_term">Term</string>
+    <string name="txt_course">Course</string>
+    <string name="txt_work">Work</string>
+    <string name="txt_upcoming_work">Upcoming Work</string>
+
+    <!-- Courses -->
+    <string name="txt_courses_screen_title">Courses</string>
+    <string name="btn_add_term">Add Term</string>
+    <string name="btn_add_course">Add Course</string>
+    <string name="btn_add">Add</string>
+    <string name="txt_no_work_added">No Work Added</string>
+    <string name="txt_add_a_course_to_add_work">Add a course to add work</string>
+    <string name="txt_no_course_added">No Course Added</string>
+    <string name="txt_add_a_term_to_add_course">Add a term to add course</string>
+
+    <!-- Goal Tracker -->
+    <string name="txt_goal_tracker_title">Goal Tracker</string>
+    <string name="txt_your_goal">Your Goal</string>
+    <string name="btn_update_minimum_criteria">Update Minimum Criteria</string>
+    <string name="txt_minimum_criteria">Minimum Criteria</string>
+    <string name="txt_minimum_criteria_subtitle">Following shows the minimum percent required to achieve your goal</string>
+
+    <!-- Analytics -->
+    <string name="txt_analytics_title">Analytics</string>
+
+    <!-- Settings -->
+    <string name="txt_settings_title">Settings</string>
+    <string name="btn_change_picture">Change picture</string>
+    <string name="btn_change_password">Change password</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_log_out">Log out</string>
+    <string name="txt_edittext_old_password_placeholder">Old password</string>
+    <string name="txt_edittext_new_password_placeholder">New password</string>
+    <string name="txt_edittext_confirm_new_password_placeholder">Confirm new password</string>
+    <string name="btn_change">Change</string>
 </resources>
