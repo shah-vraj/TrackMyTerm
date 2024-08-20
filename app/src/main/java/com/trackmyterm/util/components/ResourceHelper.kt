@@ -1,4 +1,4 @@
-package com.trackmyterm.util
+package com.trackmyterm.util.components
 
 import android.content.Context
 import androidx.annotation.StringRes
