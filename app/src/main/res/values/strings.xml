@@ -5,6 +5,7 @@
     <string name="txt_onboarding_title">WELCOME</string>
     <string name="txt_onboarding_subtitle">Manage all your terms and courses. Be aware on securing grades for achieving goals</string>
     <string name="btn_onboarding_start">Start</string>
+    <string name="txt_no_internet">No internet available! Please connect to internet to access the application</string>
 
     <!-- Login -->
     <string name="txt_login_screen_title">Welcome Back</string>

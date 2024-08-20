@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.trackmyterm.viewmodel.OnboardingViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_onboarding_screen"
+        tools:context=".ui.onboarding.OnboardingActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_title"
+            android:textSize="@dimen/_30ssp"
+            android:textStyle="bold"
+            android:textColor="@color/app_text_primary"
+            android:text="@string/txt_onboarding_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_center" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_subtitle"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/app_text_secondary"
+            android:text="@string/txt_onboarding_subtitle"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:paddingHorizontal="@dimen/_32sdp"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_title" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_start"
+            style="@style/default_button"
+            showUnlessInvisible="@{!viewModel.isInternetAvailable()}"
+            android:onClick="@{() -> viewModel.onStartClicked()}"
+            android:paddingHorizontal="@dimen/_46sdp"
+            android:text="@string/btn_onboarding_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_subtitle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_no_internet"
+            showUnlessGone="@{viewModel.isInternetAvailable()}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginHorizontal="@dimen/_32sdp"
+            android:text="@string/txt_no_internet"
+            android:textColor="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_start"
+            tools:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

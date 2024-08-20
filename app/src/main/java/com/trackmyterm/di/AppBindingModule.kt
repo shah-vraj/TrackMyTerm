@@ -1,9 +1,11 @@
 package com.trackmyterm.di
 
-import com.trackmyterm.util.NetworkHelper
-import com.trackmyterm.util.NetworkHelperImpl
-import com.trackmyterm.util.ResourceHelper
-import com.trackmyterm.util.ResourceHelperImpl
+import com.trackmyterm.util.components.AppSharedPreferences
+import com.trackmyterm.util.components.AppSharedPreferencesImpl
+import com.trackmyterm.util.components.NetworkHelper
+import com.trackmyterm.util.components.NetworkHelperImpl
+import com.trackmyterm.util.components.ResourceHelper
+import com.trackmyterm.util.components.ResourceHelperImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -25,4 +27,8 @@ abstract class AppBindingModule {
     @Singleton
     @Binds
     abstract fun bindNetworkHelper(impl: NetworkHelperImpl): NetworkHelper
+
+    @Singleton
+    @Binds
+    abstract fun bindSharedPreferences(impl: AppSharedPreferencesImpl): AppSharedPreferences
 }
