@@ -86,4 +86,9 @@
     <string name="txt_edittext_new_password_placeholder">New password</string>
     <string name="txt_edittext_confirm_new_password_placeholder">Confirm new password</string>
     <string name="btn_change">Change</string>
+
+    <!-- Validation errors -->
+    <string name="txt_empty_input_field">Input field must not be empty</string>
+    <string name="txt_invalid_email">Invalid email address provided</string>
+    <string name="txt_invalid_password">Invalid password provided, it must contain at least 8 characters</string>
 </resources>

@@ -8,6 +8,7 @@
     <application
         android:name=".ui.TrackMyTermApplication"
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_app_logo"
@@ -16,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrackMyTerm"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.authentication.AuthenticationActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.onboarding.OnboardingActivity"
             android:exported="true">

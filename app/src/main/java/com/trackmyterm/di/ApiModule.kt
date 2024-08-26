@@ -1,8 +1,10 @@
 package com.trackmyterm.di
 
 import android.content.Context
-import com.trackmyterm.data.remote.apiservice.AuthService
+import com.trackmyterm.BuildConfig
 import com.trackmyterm.data.remote.apiresult.ApiResultCallAdapterFactory
+import com.trackmyterm.data.remote.apiservice.AuthService
+import com.trackmyterm.util.Urls
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +18,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
-import com.trackmyterm.BuildConfig
 
 private const val HTTP_LOGGING_INTERCEPTOR: String = "HTTP_LOGGING_INTERCEPTOR"
 private const val OKHTTP_CLIENT = "OKHTTP_CLIENT"
@@ -59,7 +60,7 @@ object ApiModule {
         @Named(OKHTTP_CLIENT) okHttpClient: OkHttpClient,
         apiResultCallAdapterFactory: ApiResultCallAdapterFactory
     ): Retrofit = Retrofit.Builder()
-        .baseUrl("http://localhost:8080") // [TODO]: Change to deployed URL when ready
+        .baseUrl(Urls.BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(apiResultCallAdapterFactory)
