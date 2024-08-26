@@ -3,7 +3,9 @@ package com.trackmyterm.ui.onboarding
 import androidx.activity.viewModels
 import com.trackmyterm.R
 import com.trackmyterm.databinding.ActivityOnboardingBinding
+import com.trackmyterm.ui.authentication.AuthenticationActivity
 import com.trackmyterm.ui.base.BaseAppCompatActivity
+import com.trackmyterm.util.extensions.launchActivityAndFinish
 import com.trackmyterm.util.extensions.observeEvent
 import com.trackmyterm.viewmodel.OnboardingViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,9 +20,8 @@ class OnboardingActivity : BaseAppCompatActivity<ActivityOnboardingBinding, Onbo
     override fun setupViewModel() {
         viewModel.navigationEvent.observeEvent(this) {
             when (it) {
-                OnboardingViewModel.Navigation.AuthenticationActivity -> {
-                    // [TODO]: Navigate to auth activity
-                }
+                OnboardingViewModel.Navigation.AuthenticationActivity ->
+                    launchActivityAndFinish<AuthenticationActivity>()
 
                 OnboardingViewModel.Navigation.HomeActivity -> {
                     // [TODO]: Navigate to home activity

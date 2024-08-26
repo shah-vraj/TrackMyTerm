@@ -1,5 +1,7 @@
 package com.trackmyterm.data.remote.apiresult
 
+import com.google.gson.Gson
+import com.trackmyterm.data.remote.response.ErrorResponse
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call
@@ -54,7 +56,9 @@ class ApiResultCall<T : Any>(private val call: Call<T>) : Call<ApiResult<T>> {
         return if (response.isSuccessful && body != null) {
             ApiSuccess(body)
         } else {
-            ApiError(response.code(), response.message())
+            Gson().fromJson(response.errorBody()?.string(), ErrorResponse::class.java)?.let {
+                ApiError(response.code(), it.message)
+            } ?: ApiError(response.code(), response.message())
         }
     }
 }
