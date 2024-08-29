@@ -5,6 +5,7 @@ import com.trackmyterm.R
 import com.trackmyterm.databinding.ActivityOnboardingBinding
 import com.trackmyterm.ui.authentication.AuthenticationActivity
 import com.trackmyterm.ui.base.BaseAppCompatActivity
+import com.trackmyterm.ui.home.HomeActivity
 import com.trackmyterm.util.extensions.launchActivityAndFinish
 import com.trackmyterm.util.extensions.observeEvent
 import com.trackmyterm.viewmodel.OnboardingViewModel
@@ -24,7 +25,7 @@ class OnboardingActivity : BaseAppCompatActivity<ActivityOnboardingBinding, Onbo
                     launchActivityAndFinish<AuthenticationActivity>()
 
                 OnboardingViewModel.Navigation.HomeActivity -> {
-                    // [TODO]: Navigate to home activity
+                    launchActivityAndFinish<HomeActivity>()
                 }
             }
         }
