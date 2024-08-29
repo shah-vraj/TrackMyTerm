@@ -14,6 +14,8 @@ import com.trackmyterm.util.extensions.onError
 import com.trackmyterm.util.extensions.onException
 import com.trackmyterm.util.extensions.onSuccess
 import com.trackmyterm.util.result.Event
+import com.trackmyterm.viewmodel.AuthenticationViewModel.Companion.API_ERROR_MESSAGE
+import com.trackmyterm.viewmodel.AuthenticationViewModel.Companion.MIN_PASSWORD_LENGTH
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -34,10 +36,16 @@ class RegisterViewModel @Inject constructor(
     private val _inputValidationError = MutableLiveData("")
     val inputValidationError: LiveData<String> get() = _inputValidationError
 
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
     private val _navigateToLogin = MutableLiveData<Event<String>>()
     val navigateToLogin: LiveData<Event<String>> get() = _navigateToLogin
 
     val isInputValid = inputValidationError.map { it.isEmpty() }
+    val signupButtonText = isLoading.map { loading ->
+        if (loading) "" else resourceHelper.getString(R.string.btn_sign_up)
+    }
 
     fun onPasswordEyeClicked() {
         _passwordHiddenStatus.value = !(passwordHiddenStatus.value ?: false)
@@ -58,35 +66,26 @@ class RegisterViewModel @Inject constructor(
     }
 
     private fun validateInput(fullName: String, email: String, password: String): Unit = when {
-        // Empty input field
         fullName.isBlank() || email.isBlank() || password.isBlank() ->
             setInputValidationError(resourceHelper.getString(R.string.txt_empty_input_field))
 
-        // Invalid email address
         !Patterns.EMAIL_ADDRESS.matcher(email).matches() ->
             setInputValidationError(resourceHelper.getString(R.string.txt_invalid_email))
 
-        // Invalid password
         password.length < MIN_PASSWORD_LENGTH ->
             setInputValidationError(resourceHelper.getString(R.string.txt_invalid_password))
 
-        // Valid input
         else -> setInputValidationError("")
     }
 
     private fun registerUser(registerRequest: RegisterRequest) {
         viewModelScope.launch {
+            _isLoading.postValue(true)
             authenticationRepository.registerUser(registerRequest)
-                .onSuccess {
-                    setInputValidationError("")
-                    _navigateToLogin.value = Event(registerRequest.email)
-                }
-                .onError { _, message ->
-                    setInputValidationError(message ?: "")
-                }
-                .onException {
-                    setInputValidationError(it.message ?: "")
-                }
+                .onSuccess { onRegisterSuccess(registerRequest.email) }
+                .onError { _, message -> setInputValidationError(message ?: "") }
+                .onException { setInputValidationError(API_ERROR_MESSAGE) }
+            _isLoading.postValue(false)
         }
     }
 
@@ -94,7 +93,8 @@ class RegisterViewModel @Inject constructor(
         _inputValidationError.value = error
     }
 
-    companion object {
-        private const val MIN_PASSWORD_LENGTH = 8
+    private fun onRegisterSuccess(email: String) {
+        setInputValidationError("")
+        _navigateToLogin.value = Event(email)
     }
 }

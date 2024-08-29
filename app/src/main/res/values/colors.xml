@@ -10,4 +10,5 @@
     <color name="edittext_text_placeholder">#80524B6B</color>
     <color name="edittext_shadow">#2E99ABC6</color>
     <color name="work_subtext">#80150B3D</color>
+    <color name="text_remember_me">#AAA6B9</color>
 </resources>

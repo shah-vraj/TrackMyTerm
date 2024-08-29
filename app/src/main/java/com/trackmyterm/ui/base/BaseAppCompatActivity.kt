@@ -3,9 +3,11 @@ package com.trackmyterm.ui.base
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.trackmyterm.BR
+import com.trackmyterm.R
 
 /**
  * Base activity for all activities
@@ -46,9 +48,12 @@ abstract class BaseAppCompatActivity<Binding : ViewDataBinding, ViewModel : Base
     /**
      * Setup the UI
      */
-    private fun setupUi() = with(binding) {
-        lifecycleOwner = this@BaseAppCompatActivity
-        setVariable(BR.viewModel, viewModel)
-        executePendingBindings()
+    private fun setupUi() {
+        with(binding) {
+            lifecycleOwner = this@BaseAppCompatActivity
+            setVariable(BR.viewModel, viewModel)
+            executePendingBindings()
+        }
+        window.statusBarColor = ContextCompat.getColor(this, R.color.app_primary)
     }
 }
