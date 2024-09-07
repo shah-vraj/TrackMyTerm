@@ -32,6 +32,7 @@ class LoginViewModel @Inject constructor(
     sealed interface Navigation {
         data object RegisterActivity : Navigation
         data object HomeActivity : Navigation
+        data object ForgotPassword : Navigation
     }
 
     val email = MutableLiveData(appSharedPreferences.getRememberedEmail() ?: "")
@@ -67,7 +68,7 @@ class LoginViewModel @Inject constructor(
 
     fun onForgotPasswordClicked() {
         if (isLoading.value == true) return
-        // [TODO]: Navigate to forgot password
+        _navigationEvent.value = Event(Navigation.ForgotPassword)
     }
 
     fun onLoginClicked() {
