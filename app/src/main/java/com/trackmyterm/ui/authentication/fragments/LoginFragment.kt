@@ -10,6 +10,7 @@ import com.trackmyterm.ui.base.BaseFragment
 import com.trackmyterm.util.extensions.observeEvent
 import com.trackmyterm.viewmodel.AuthenticationViewModel
 import com.trackmyterm.viewmodel.LoginViewModel
+import com.trackmyterm.viewmodel.LoginViewModel.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,12 +34,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                 binding.ivRememberMe.isSelected = it
             }
             navigationEvent.observeEvent(this@LoginFragment) {
-                when (it) {
-                    LoginViewModel.Navigation.HomeActivity ->
-                        authViewModel.navigateToHomeActivity()
-                    LoginViewModel.Navigation.RegisterActivity ->
-                        findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
-                }
+                handleNavigation(it)
             }
         }
     }
@@ -56,6 +52,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             setSelection(text?.length ?: 0)
         }
         ivPasswordEye.isSelected = !isPasswordHidden
+    }
+
+    private fun handleNavigation(navigation: Navigation) {
+        when (navigation) {
+            Navigation.HomeActivity ->
+                authViewModel.navigateToHomeActivity()
+            Navigation.RegisterActivity ->
+                findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            Navigation.ForgotPassword ->
+                findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+        }
     }
 
     companion object {

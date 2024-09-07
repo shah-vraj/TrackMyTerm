@@ -7,4 +7,5 @@ object Urls {
     // Endpoints
     const val REGISTER = "$AUTH_PREFIX/register"
     const val LOGIN = "$AUTH_PREFIX/login"
+    const val FORGOT_PASSWORD = "$AUTH_PREFIX/forgot-password"
 }
