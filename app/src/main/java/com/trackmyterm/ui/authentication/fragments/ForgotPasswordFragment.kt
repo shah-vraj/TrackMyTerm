@@ -1,5 +1,6 @@
 package com.trackmyterm.ui.authentication.fragments
 
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.trackmyterm.R
@@ -11,7 +12,8 @@ import com.trackmyterm.viewmodel.ForgotPasswordViewModel.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ForgotPasswordFragment: BaseFragment<FragmentForgotPasswordBinding, ForgotPasswordViewModel>() {
+class ForgotPasswordFragment :
+    BaseFragment<FragmentForgotPasswordBinding, ForgotPasswordViewModel>() {
 
     override val viewModel: ForgotPasswordViewModel by viewModels()
 
@@ -25,11 +27,12 @@ class ForgotPasswordFragment: BaseFragment<FragmentForgotPasswordBinding, Forgot
 
     private fun handleNavigation(navigation: Navigation) {
         when (navigation) {
-            Navigation.Login ->
-                findNavController().navigate(R.id.action_forgotPasswordFragment_to_loginFragment)
-            is Navigation.ResetPassword -> {
-                // TODO: Navigate to reset password
-            }
+            Navigation.Login -> parentFragmentManager.popBackStack()
+            is Navigation.OtpVerification ->
+                findNavController().navigate(
+                    resId = R.id.action_forgotPasswordFragment_to_otpVerificationFragment,
+                    args = bundleOf(OtpVerificationFragment.EMAIL to navigation.email)
+                )
         }
     }
 }

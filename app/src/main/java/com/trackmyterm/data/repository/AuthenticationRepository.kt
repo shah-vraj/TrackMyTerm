@@ -4,9 +4,11 @@ import com.trackmyterm.data.remote.apiresult.ApiResult
 import com.trackmyterm.data.remote.apiservice.AuthService
 import com.trackmyterm.data.remote.request.ForgotPasswordRequest
 import com.trackmyterm.data.remote.request.LoginRequest
+import com.trackmyterm.data.remote.request.OtpVerificationRequest
 import com.trackmyterm.data.remote.request.RegisterRequest
 import com.trackmyterm.data.remote.response.ForgotPasswordResponse
 import com.trackmyterm.data.remote.response.LoginResponse
+import com.trackmyterm.data.remote.response.OtpVerificationResponse
 import com.trackmyterm.data.remote.response.RegisterResponse
 import javax.inject.Inject
 
@@ -17,6 +19,8 @@ interface AuthenticationRepository {
     suspend fun loginUser(request: LoginRequest): ApiResult<LoginResponse>
 
     suspend fun forgotPassword(request: ForgotPasswordRequest): ApiResult<ForgotPasswordResponse>
+
+    suspend fun verifyOtp(request: OtpVerificationRequest): ApiResult<OtpVerificationResponse>
 }
 
 class AuthenticationRepositoryImpl @Inject constructor(
@@ -32,4 +36,8 @@ class AuthenticationRepositoryImpl @Inject constructor(
     override suspend fun forgotPassword(
         request: ForgotPasswordRequest
     ): ApiResult<ForgotPasswordResponse> = authService.forgotPassword(request)
+
+    override suspend fun verifyOtp(
+        request: OtpVerificationRequest
+    ): ApiResult<OtpVerificationResponse> = authService.verifyOtp(request)
 }
