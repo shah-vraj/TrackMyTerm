@@ -28,7 +28,12 @@
         android:name="com.trackmyterm.ui.authentication.fragments.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment">
         <action
-            android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_forgotPasswordFragment_to_otpVerificationFragment"
+            app:destination="@id/otpVerificationFragment"
+            app:popUpTo="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/otpVerificationFragment"
+        android:name="com.trackmyterm.ui.authentication.fragments.OtpVerificationFragment"
+        android:label="OtpVerificationFragment" />
 </navigation>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.trackmyterm.viewmodel.OtpVerificationViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background"
+        tools:context=".ui.authentication.fragments.OtpVerificationFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_header_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:src="@drawable/ic_otp_verification_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_header"
+                style="@style/text_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/txt_otp_screen_title"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_header_logo" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_header_caption"
+                style="@style/text_header_caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/txt_otp_screen_subtitle"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_header" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_header_caption_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:fontFamily="sans-serif"
+                android:text="@{viewModel.email}"
+                android:textAlignment="center"
+                android:textColor="@color/app_text_primary"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_header_caption"
+                tools:text="vrajshah@gmail.com" />
+
+            <com.otpview.OTPTextView
+                android:id="@+id/otp_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:textColor="@color/app_text_primary"
+                app:box_margin="6dp"
+                app:height="@dimen/_35sdp"
+                app:hide_otp="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_header_caption_email"
+                app:length="6"
+                app:otp_box_background="@drawable/bg_otp_text"
+                app:otp_text_size="20sp"
+                app:width="@dimen/_35sdp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_input_validation_error"
+                showUnlessGone="@{viewModel.isInputValid()}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.inputValidationError}"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toTopOf="@id/btn_reset_password"
+                app:layout_constraintEnd_toEndOf="@id/otp_view"
+                app:layout_constraintStart_toStartOf="@id/otp_view"
+                app:layout_constraintTop_toBottomOf="@id/otp_view" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_reset_password"
+                style="@style/default_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:clickable="@{!viewModel.isLoading()}"
+                android:onClick="@{() -> viewModel.onResetPasswordClicked()}"
+                android:text="@{viewModel.resetPasswordButtonText}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/otp_view" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/cp_loading"
+                showUnlessGone="@{!viewModel.isLoading()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:padding="@dimen/_2sdp"
+                android:translationZ="@dimen/_2sdp"
+                app:indicatorColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/btn_reset_password"
+                app:layout_constraintEnd_toEndOf="@id/btn_reset_password"
+                app:layout_constraintStart_toStartOf="@id/btn_reset_password"
+                app:layout_constraintTop_toTopOf="@id/btn_reset_password"
+                app:trackColor="@color/app_primary" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_back_to_login"
+                style="@style/stroke_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:onClick="@{() -> viewModel.onBackToLoginClicked()}"
+                android:text="@string/btn_back_to_login"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_reset_password" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -37,8 +37,9 @@
 
     <!-- OTP -->
     <string name="txt_otp_screen_title">Check Your Email</string>
-    <string name="txt_otp_screen_subtitle">We have sent the OTP to the email address %1$s</string>
+    <string name="txt_otp_screen_subtitle">We have sent the OTP to the email address</string>
     <string name="btn_reset_password">Reset Password</string>
+    <string name="txt_input_valid_otp">Please input full OTP before resetting password</string>
 
     <!-- Reset Password -->
     <string name="txt_reset_password_screen_title">Reset Password</string>
@@ -91,4 +92,6 @@
     <string name="txt_empty_input_field">Input field must not be empty</string>
     <string name="txt_invalid_email">Invalid email address provided</string>
     <string name="txt_invalid_password">Invalid password provided, it must contain at least 8 characters</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

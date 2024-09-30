@@ -79,4 +79,7 @@ dependencies {
     implementation(libs.retrofit.gson)
     implementation(libs.okhttp3)
     implementation(libs.okhttp3.logging.interceptor)
+
+    // OTPView
+    implementation(libs.otp.view)
 }
